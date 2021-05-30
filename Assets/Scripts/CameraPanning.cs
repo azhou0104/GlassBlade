@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class camera_panning : MonoBehaviour
+public class CameraPanning : MonoBehaviour
 {
-    public float speed = 3f; // Speed of camera movement
-    public float transitionSpeed = 10f; // Speed of snapback
-    public float maxDist = 3f; // Maximum distance the camera can travel
+    public float CAMERA_SPEED = 3f; // speed of camera movement
+    public float TRANSITION_SPEED = 10f; // speed of snapback
+    public float MAX_DIST = 3f; // Maximum distance the camera can travel
     private GameObject Player; // Player object
 
     // Start is called before the first frame update
@@ -35,24 +35,24 @@ public class camera_panning : MonoBehaviour
     void FixedUpdate()
     {
         // Debug.Log(transform.position.x + " " + (transform.position.y - 10) + " " + transform.position.z);
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetAxis("Vertical") < 0)
         {
-            if (Mathf.Abs(transform.position.y - Player.transform.position.y) < maxDist)
+            if (Mathf.Abs(transform.position.y - Player.transform.position.y) < MAX_DIST)
             {
                 // Debug.Log("S key is held down");
-                transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
+                transform.Translate(new Vector3(0, Input.GetAxis("Vertical") * CAMERA_SPEED * Time.deltaTime, 0));
             }
             else
             {
                 // Debug.Log("Camera has gone too far");
             }
         }
-        else if (Input.GetKey(KeyCode.W))
+        else if (Input.GetAxis("Vertical") > 0)
         {
-            if (Mathf.Abs(transform.position.y - Player.transform.position.y) < maxDist)
+            if (Mathf.Abs(transform.position.y - Player.transform.position.y) < MAX_DIST)
             {
                 // Debug.Log("W key is held down");
-                transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
+                transform.Translate(new Vector3(0, CAMERA_SPEED * Time.deltaTime, 0));
             }
             else
             {
@@ -62,12 +62,12 @@ public class camera_panning : MonoBehaviour
         //else if (Input.GetKey(KeyCode.D))
         //{
         //    // Debug.Log("D key is held down");
-        //    transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+        //    transform.Translate(new Vector3(SPEED * Time.deltaTime, 0, 0));
         //}
         else
         {
             // Snap back to player
-            transform.position = Vector3.Lerp(transform.position, Player.transform.position - (new Vector3(0, 0, 10)), Time.deltaTime * transitionSpeed);
+            transform.position = Vector3.Lerp(transform.position, Player.transform.position - (new Vector3(0, 0, 10)), Time.deltaTime * TRANSITION_SPEED);
         }
     }
 }
