@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class camera_panning : MonoBehaviour
 {
-    float speed; // Speed of camera movement
-    float transitionSpeed; // Speed of snapback
-    float maxDist; // Maximum distance the camera can travel
-    bool automatic; // automatic is true when camera is locked on to the player (false when player is manually controlling camera) (we probably don't actually need this)
-    GameObject Player; // Player object
+    public float speed = 3f; // Speed of camera movement
+    public float transitionSpeed = 10f; // Speed of snapback
+    public float maxDist = 3f; // Maximum distance the camera can travel
+    private GameObject Player; // Player object
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = 3;
-        transitionSpeed = 10;
-        maxDist = 3;
         Player = GameObject.Find("Player");
         if (Player)
         {
