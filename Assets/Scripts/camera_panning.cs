@@ -15,4 +15,16 @@ public class camera_panning : MonoBehaviour
     {
         
     }
+
+    void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.S))
+        {
+            Debug.Log("S key is held down");
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            Debug.Log("W key is held down");
+        }
+    }
 }
