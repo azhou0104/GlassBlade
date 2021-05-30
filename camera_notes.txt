@@ -1,0 +1,4 @@
+Camera will have two modes: automatic (default) and manual
+In automatic mode, the camera will be locked on the player
+Manual mode can be entered using the W and S keys, which will shift the camera up (W) or down (S)
+If W or S are let go, the camera will return to automatic mode
