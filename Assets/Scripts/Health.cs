@@ -5,10 +5,10 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 
-    private int m_CurrHealth;
-    private int m_MaxHealth;
+    private int m_CurrHealth = 1;
+    private int m_MaxHealth = 1;
 
-    private bool m_IsDead;
+    private bool m_IsDead = false;
 
     public bool IsDead()
     {
