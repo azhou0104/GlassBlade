@@ -12,14 +12,14 @@ public class camera_panning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 1; // Idk what this should be just testing lmao
-        transitionSpeed = 3;
+        speed = 3; // Idk what this should be just testing
+        transitionSpeed = 10;
         Player = GameObject.Find("Player");
         if (Player)
         {
             transform.position = Player.transform.position;
             transform.position -= new Vector3(0, 0, 10); // Camera should be above player
-            Debug.Log(transform.position.x + " " + (transform.position.y - 10) + " " + transform.position.z);
+            // Debug.Log(transform.position.x + " " + (transform.position.y - 10) + " " + transform.position.z);
         }
         else
         {
@@ -31,12 +31,12 @@ public class camera_panning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // Don't use this lmao
     }
 
     void FixedUpdate()
     {
-        Debug.Log(transform.position.x + " " + (transform.position.y - 10) + " " + transform.position.z);
+        // Debug.Log(transform.position.x + " " + (transform.position.y - 10) + " " + transform.position.z);
         if (Input.GetKey(KeyCode.S))
         {
             // Debug.Log("S key is held down");
@@ -47,11 +47,11 @@ public class camera_panning : MonoBehaviour
             // Debug.Log("W key is held down");
             transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
         }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            // Debug.Log("D key is held down");
-            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-        }
+        //else if (Input.GetKey(KeyCode.D))
+        //{
+        //    // Debug.Log("D key is held down");
+        //    transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+        //}
         else
         {
             // Snap back to player
