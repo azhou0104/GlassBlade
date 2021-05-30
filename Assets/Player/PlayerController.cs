@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public enum PlayerState { idle, walk, dash, air, jump };
 
-    private PlayerState m_CurrState = PlayerState.idle;
+    public PlayerState m_CurrState = PlayerState.idle;
 
     private float WALK_SPEED = 5f;
     private float JUMP_POWER = 200f;

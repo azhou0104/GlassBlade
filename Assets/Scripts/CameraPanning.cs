@@ -7,7 +7,8 @@ public class CameraPanning : MonoBehaviour
     public float CAMERA_SPEED = 3f; // speed of camera movement
     public float TRANSITION_SPEED = 10f; // speed of snapback
     public float MAX_DIST = 3f; // Maximum distance the camera can travel
-    private GameObject Player; // Player object
+    private GameObject Player; // Player object, used to access componenets in Player
+    private PlayerController playerScript; // Used to access variables in Player
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class CameraPanning : MonoBehaviour
         Player = GameObject.Find("Player");
         if (Player)
         {
+            playerScript = Player.GetComponent<PlayerController>();
             transform.position = Player.transform.position;
             transform.position -= new Vector3(0, 0, 10); // Camera should be above player
             // Debug.Log(transform.position.x + " " + (transform.position.y - 10) + " " + transform.position.z);
@@ -35,27 +37,31 @@ public class CameraPanning : MonoBehaviour
     void FixedUpdate()
     {
         // Debug.Log(transform.position.x + " " + (transform.position.y - 10) + " " + transform.position.z);
-        if (Input.GetAxis("Vertical") < 0)
+        if (Input.GetAxis("Vertical") < 0 && playerScript.m_CurrState != PlayerController.PlayerState.air)
         {
             if (Mathf.Abs(transform.position.y - Player.transform.position.y) < MAX_DIST)
             {
                 // Debug.Log("S key is held down");
-                transform.Translate(new Vector3(0, Input.GetAxis("Vertical") * CAMERA_SPEED * Time.deltaTime, 0));
+                // transform.Translate(new Vector3(0, CAMERA_SPEED * Time.deltaTime, 0));
+                transform.position = new Vector3(Player.transform.position.x, transform.position.y + Input.GetAxis("Vertical") * CAMERA_SPEED * Time.deltaTime, transform.position.z);
             }
             else
             {
+                transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y - MAX_DIST, transform.position.z);
                 // Debug.Log("Camera has gone too far");
             }
         }
-        else if (Input.GetAxis("Vertical") > 0)
+        else if (Input.GetAxis("Vertical") > 0 && playerScript.m_CurrState != PlayerController.PlayerState.air)
         {
             if (Mathf.Abs(transform.position.y - Player.transform.position.y) < MAX_DIST)
             {
                 // Debug.Log("W key is held down");
-                transform.Translate(new Vector3(0, CAMERA_SPEED * Time.deltaTime, 0));
+                // transform.Translate(new Vector3(0, CAMERA_SPEED * Time.deltaTime, 0));
+                transform.position = new Vector3(Player.transform.position.x, transform.position.y + CAMERA_SPEED * Time.deltaTime, transform.position.z);
             }
             else
             {
+                transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + MAX_DIST, transform.position.z);
                 // Debug.Log("Camera has gone too far");
             }
         }
