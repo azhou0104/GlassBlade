@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: Limit the distance that the camera can be moved
-
 public class camera_panning : MonoBehaviour
 {
     float speed; // Speed of camera movement
@@ -15,7 +13,7 @@ public class camera_panning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 3; // Idk what this should be just testing
+        speed = 3;
         transitionSpeed = 10;
         maxDist = 3;
         Player = GameObject.Find("Player");
@@ -73,7 +71,7 @@ public class camera_panning : MonoBehaviour
         else
         {
             // Snap back to player
-            transform.position = Vector3.Lerp(transform.position, Player.transform.position - (new Vector3(0, 0, 10)), Time.deltaTime * transitionSpeed); ;
+            transform.position = Vector3.Lerp(transform.position, Player.transform.position - (new Vector3(0, 0, 10)), Time.deltaTime * transitionSpeed);
         }
     }
 }
