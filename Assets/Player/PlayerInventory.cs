@@ -8,6 +8,9 @@ public class PlayerInventory : MonoBehaviour
     int cur_swords = 0; // Current number of swords on player
     Camera m_MainCamera;
     // Start is called before the first frame update
+
+    // create canvas, draw directly in front of camera
+
     void Start()
     {
         m_MainCamera = Camera.main;
