@@ -8,14 +8,18 @@ public class PlayerController : MonoBehaviour
 
     public PlayerState m_CurrState = PlayerState.idle;
 
+    [SerializeField]
     private float WALK_SPEED = 5f;
+    [SerializeField]
     private float JUMP_POWER = 200f;
+    [SerializeField]
     private float DASH_POWER = 200f;
 
     private bool m_FacingRight = true;
 
     private float m_DashCDCurr = 0f;
-    private float m_DashCD = 2f;
+    [SerializeField]
+    private float DASH_CD = 2f;
 
     private bool m_IsGrounded = false;
     [SerializeField]
@@ -70,7 +74,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.walk:
                 break;
             case PlayerState.dash:
-                m_DashCDCurr = m_DashCD;
+                m_DashCDCurr = DASH_CD;
                 m_Rb.AddForce(new Vector2((m_FacingRight) ? DASH_POWER : -DASH_POWER, 0));
                 break;
             case PlayerState.air:

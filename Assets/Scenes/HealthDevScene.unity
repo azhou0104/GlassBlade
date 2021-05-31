@@ -422,6 +422,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c418cd806d233c41bdaf9f267c5698b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CurrState: 0
+  m_GroundCheckTransform: {x: 0, y: -0.44, z: 0}
+  m_GroundCheckHeight: 0.3
+  m_GroundCheckWidth: 1
+  m_GroundLayers:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!61 &982770605
 BoxCollider2D:
   m_ObjectHideFlags: 0
