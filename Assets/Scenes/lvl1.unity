@@ -12243,6 +12243,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CurrState: 0
+  WALK_SPEED: 5
+  JUMP_POWER: 400
+  DASH_POWER: 500
+  DASH_CD: 1
   m_GroundCheckTransform: {x: 0, y: -0.44, z: 0}
   m_GroundCheckHeight: 0.3
   m_GroundCheckWidth: 1
