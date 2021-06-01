@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
 {
 
     private int m_CurrHealth = 1;
+    private int m_MaxHealth = 1;
 
     private bool m_IsDead = false;
 
