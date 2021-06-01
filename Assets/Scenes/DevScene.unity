@@ -377,6 +377,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CurrState: 0
+  WALK_SPEED: 5
+  JUMP_POWER: 200
+  DASH_POWER: 200
+  DASH_CD: 2
   m_GroundCheckTransform: {x: 0, y: 0, z: 0}
   m_GroundCheckHeight: 0.3
   m_GroundCheckWidth: 0.5
@@ -396,7 +400,7 @@ GameObject:
   - component: {fileID: 422679335}
   - component: {fileID: 422679334}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Swords
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +422,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 21, y: -19}
+  m_AnchoredPosition: {x: 26, y: -55}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &422679334

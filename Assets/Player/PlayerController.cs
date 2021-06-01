@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D m_Rb;
 
+    public float health = 100f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,8 @@ public class PlayerController : MonoBehaviour
         m_CurrState = PlayerState.idle;
         m_IsGrounded = false;
         m_FacingRight = true;
+
+       
     }
 
     // Update is called once per frame
