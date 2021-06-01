@@ -23,6 +23,7 @@ public class PlayerInventory : MonoBehaviour
     void Start()
     {
         m_MainCamera = Camera.main;
+        swordText.color = new Color(255, 255, 255, 1);
         swordText.text = "Swords: " + 0;
         _color = swordText.color;
         //swordText.text = "Swords: " + cur_swords;
@@ -35,19 +36,18 @@ public class PlayerInventory : MonoBehaviour
         swordText.text = "Swords: " + cur_swords;
         if (cur_swords < 2)
         {
-
             _timeChecker += Time.deltaTime;
             if (_timeChecker < blink_time)
             {
-                swordText.color = new Color(255, _color.g, _color.b, _timeChecker / blink_out_time);
+                swordText.color = new Color(255, 0, 0, _timeChecker / blink_out_time);
             }
             else if (_timeChecker < blink_time + blink_stay_time)
             {
-                swordText.color = new Color(255, _color.g, _color.b, 1);
+                swordText.color = new Color(255, 0, 0, 1);
             }
             else if (_timeChecker < blink_time + blink_stay_time + blink_out_time)
             {
-                swordText.color = new Color(255, _color.g, _color.b, 1 - (_timeChecker - (blink_time + blink_stay_time)) / blink_out_time);
+                swordText.color = new Color(255, 0, 0, 1 - (_timeChecker - (blink_time + blink_stay_time)) / blink_out_time);
             }
             else
             {
