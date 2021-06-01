@@ -6,7 +6,13 @@ using UnityEngine.UI;
 public class PlayerInventory : MonoBehaviour
 {
     public int cur_swords = 0; // Current number of swords on player
-    private float blink_time = 5f; // blinking time
+
+    public float blink_time = 0.5f; // blinking time
+    public float blink_stay_time = 0.8f;
+    public float blink_out_time = 0.7f;
+    private float _timeChecker = 0;
+    private Color _color;
+
     Camera m_MainCamera;
 
     public Text swordText;
@@ -17,28 +23,45 @@ public class PlayerInventory : MonoBehaviour
     void Start()
     {
         m_MainCamera = Camera.main;
-        swordText.text = "Swords: " + cur_swords;
-        
+        swordText.text = "Swords: " + 0;
+        _color = swordText.color;
+        //swordText.text = "Swords: " + cur_swords;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        swordText.text = "Swords: " + cur_swords;
+        if (cur_swords < 2)
+        {
+
+            _timeChecker += Time.deltaTime;
+            if (_timeChecker < blink_time)
+            {
+                swordText.color = new Color(255, _color.g, _color.b, _timeChecker / blink_out_time);
+            }
+            else if (_timeChecker < blink_time + blink_stay_time)
+            {
+                swordText.color = new Color(255, _color.g, _color.b, 1);
+            }
+            else if (_timeChecker < blink_time + blink_stay_time + blink_out_time)
+            {
+                swordText.color = new Color(255, _color.g, _color.b, 1 - (_timeChecker - (blink_time + blink_stay_time)) / blink_out_time);
+            }
+            else
+            {
+                _timeChecker = 0;
+            }
+        }
         
         //OnTriggerEnter2D()
     }
 
     void FixedUpdate()
     {
-        StartBlinking();
+        
     }
-
-    void updateSwordText()
-    {
-        swordText.text = "Swords: " + cur_swords;
-
-    }
-
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -49,33 +72,4 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    IEnumerator Blink()
-    {
-        while (cur_swords < 2)
-        {
-            switch (swordText.color.a.ToString())
-            {
-                case "0":
-                    swordText.color = new Color(swordText.color.r, swordText.color.g, swordText.color.b, 1);
-                    yield return new WaitForSeconds(blink_time);
-                    break;
-                case "1":
-                    swordText.color = new Color(255, 0, 0, 0);
-                    yield return new WaitForSeconds(blink_time);
-                    break;
-
-            }
-        }
-    }
-
-    void StartBlinking()
-    {
-        StopCoroutine("Blink");
-        StartCoroutine("Blink");
-    }
-
-    void StopBlinking()
-    {
-        StopCoroutine("Blink");
-    }
 }
