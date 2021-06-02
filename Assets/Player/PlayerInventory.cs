@@ -24,7 +24,7 @@ public class PlayerInventory : MonoBehaviour
     {
         m_MainCamera = Camera.main;
         swordText.color = new Color(255, 255, 255, 1);
-        swordText.text = "Swords: " + 0;
+        swordText.text = "x " + 0;
         _color = swordText.color;
         //swordText.text = "Swords: " + cur_swords;
 
@@ -33,7 +33,7 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        swordText.text = "Swords: " + cur_swords;
+        swordText.text = "x " + cur_swords;
         if (cur_swords < 2)
         {
             _timeChecker += Time.deltaTime;
