@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    public Image HealthBar;
+    private float m_CurrHealth;
+    private float m_MaxHealth = 2f;
 
-    private int m_CurrHealth = 1;
-    private int m_MaxHealth = 1;
+    PlayerController Player;
 
     private bool m_IsDead = false;
 
@@ -23,6 +26,20 @@ public class Health : MonoBehaviour
         {
             m_IsDead = true;
         }
+        Debug.Log(m_CurrHealth);
+        HealthBar.fillAmount = Mathf.Clamp(m_CurrHealth / m_MaxHealth, 0, 1f);
+        Debug.Log("HEALTH: " + HealthBar.fillAmount);
     }
 
+    private void Start()
+    {
+        // HealthBar = GetComponent<Image>();
+        Player = FindObjectOfType<PlayerController>();
+        m_CurrHealth = m_MaxHealth;
+    }
+
+    private void Update()
+    {
+        
+    }
 }

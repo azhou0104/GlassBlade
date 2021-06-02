@@ -69,6 +69,7 @@ public class BasicEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            collision.gameObject.GetComponent<Health>().Damage(1);
             // Probably shouldn't destroy immediately, will wait for Design
             Destroy(gameObject);
             // Player should take damage here
