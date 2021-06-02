@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    private Image HealthBar;
+    public Image HealthBar;
     public float m_CurrHealth;
-    private float m_MaxHealth = 100f;
+    private float m_MaxHealth = 3f;
 
     PlayerController Player;
 
@@ -26,25 +26,18 @@ public class Health : MonoBehaviour
         {
             m_IsDead = true;
         }
-    }
-
-    public void setHealth()
-    {
-        m_CurrHealth = 100f;
+        Debug.Log(m_CurrHealth);
     }
 
     private void Start()
     {
-        HealthBar = GetComponent<Image>();
+        // HealthBar = GetComponent<Image>();
         Player = FindObjectOfType<PlayerController>();
-        setHealth();
     }
 
     private void Update()
     {
         //where does damage get called?
-        HealthBar.fillAmount = m_CurrHealth / m_MaxHealth;
+        HealthBar.fillAmount = Mathf.Clamp(m_CurrHealth / m_MaxHealth, 0, 1f);
     }
-
-
 }
